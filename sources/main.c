@@ -10,11 +10,29 @@ static void	check_args(int ac, char **av)
 	}
 }
 
+int	expose_test_hook(t_env *e)
+{
+	static int	c = -1;
+
+	c++;
+	printf("c: %d\n", c);
+	return(c);
+}
+
 int			main(int ac, char **av)
 {
 	t_env	*e;
 
 	check_args(ac, av);
-	mlx_hook();
+	e = (t_env *)ft_memalloc(sizeof(t_env));
+	e->mlx = mlx_init();
+	e->win = mlx_new_window(e->mlx, WINX, WINY, "hi");
+	e->img = mlx_new_image(e->mlx, WINY, WINX);
+	e->width = WINX;
+	e->heigth = WINY;
+	e->pixel = mlx_get_data_addr(e->img, &e->bpp, &e->size_line, &e->endian);
+	draw_smth(e);
+	mlx_expose_hook(e->win, expose_test_hook, e);
+	mlx_loop(e->mlx);
 	return 0;
 }

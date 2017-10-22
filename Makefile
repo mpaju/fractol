@@ -6,7 +6,7 @@
 #    By: mpaju <mpaju@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/17 17:18:15 by mpaju             #+#    #+#              #
-#    Updated: 2017/10/21 16:11:49 by mpaju            ###   ########.fr        #
+#    Updated: 2017/10/22 21:19:18 by mpaju            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ CC			=	gcc
 FLAGS		=	# -Wall -Wextra -Werror
 
 SRC_DIR		=	sources
-FILES		=	main.c 
+FILES		=	main.c \
+				fractol.c \
+				colors.c
 SRCS		=	$(addprefix $(SRC_DIR)/, $(FILES))
 
 HEAD_DIR	=	includes
