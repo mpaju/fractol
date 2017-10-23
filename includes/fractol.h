@@ -6,7 +6,7 @@
 /*   By: mpaju <mpaju@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 18:49:59 by mpaju             #+#    #+#             */
-/*   Updated: 2017/10/22 21:21:09 by mpaju            ###   ########.fr       */
+/*   Updated: 2017/10/23 21:29:45 by mpaju            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,21 @@ typedef struct		s_env
 	int				bpp;
 	int				size_line;
 	int				endian;
-	int				zoom;
+	int				(*fractol)(struct s_env*, float x, float y);
 	int				width;
-	int				heigth;
+	int				height;
+	double			zoom;
+	double			posx;
+	double			posy;
 }					t_env;
 
+void	catch_hooks(t_env *e);
 void	create_color_table(t_env *e);
-int	test_hook(t_env *e);
-void draw_smth(t_env *e);
+void 	draw_img(t_env *e);
+int		julia(t_env *e, float x0, float y0);
+int		mandelbrot(t_env *e, float x0, float y0);
+void	put_pixel(t_env *e, int x, int y, int color);
+int		test_hook(t_env *e);
+void	redraw(t_env *e);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: mpaju <mpaju@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/17 17:18:15 by mpaju             #+#    #+#              #
-#    Updated: 2017/10/22 21:19:18 by mpaju            ###   ########.fr        #
+#    Updated: 2017/10/23 14:48:40 by mpaju            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ FLAGS		=	# -Wall -Wextra -Werror
 SRC_DIR		=	sources
 FILES		=	main.c \
 				fractol.c \
-				colors.c
+				colors.c \
+				hooks.c \
+				draw.c
 SRCS		=	$(addprefix $(SRC_DIR)/, $(FILES))
 
 HEAD_DIR	=	includes
@@ -43,7 +45,7 @@ EXT_LIB		=	-framework OpenGL -framework AppKit
 all: build $(NAME) 
 
 $(NAME): $(LIB) $(OBJ_FILES)
-	$(CC) -o $@ $^ -g $(MYLIB) $(EXT_LIB)
+	@$(CC) -o $@ $^ -g $(MYLIB) $(EXT_LIB)
 	@echo "\033[0;37m$(UNAME) make all done\033[0;38m"
 
 build:
