@@ -1,15 +1,25 @@
 #include "fractol.h"
 
+static void	testfunc(void)
+{
+	return ;
+}
+
 void	put_pixel(t_env *e, int x, int y, int color)
 {
 	int i;
-
+	
+	if (x == 709 && y == 598)
+	{
+		testfunc();
+		printf("colorhello: %04x\n", color);
+	}
 	if (x >= 0 && y >= 0 && x < e->width && y < e->height)
 	{
 		i = (x * (e->bpp / 8)) + (y * e->size_line);
 		e->pixel[i] = color;
-		// e->pixel[++i] = color >> 8;
-		// e->pixel[++i] = color >> 16;
+		e->pixel[++i] = (char)color >> 8;
+		e->pixel[++i] = (char)color >> 16;
 	}
 }
 
@@ -26,11 +36,12 @@ void	draw_img(t_env *e)
 		while (x < e->width)
 		{
 			i = e->fractol(e, (float)x / e->zoom + e->posx, (float)y / e->zoom + e->posy);
-			// i = e->fractol(e, (float)(x + e->posx) / e->zoom, (float)(y + e->posy) /e->zoom);
-			// i = e->fractol(e, (float)(x + e->posx) / e->zoom, (float)(y + e->posy) / e->zoom);
-			// i = e->fractol(e, (float)(x + e->posx) / e->zoom, (float)(y + e->posy) / e->zoom);
+			if (x == 709 && y == 598)
+			{
+				printf("color1234: %04x, iter: %d, maxiter: %d\n", e->colors[i], i, MAX_ITER);
+			}
 			if (i < MAX_ITER)
-				put_pixel(e, x, y, e->colors[i]);
+				put_pixel(e, x, y,  e->colors[i] % 64);
 			x++;
 		}
 		y++;

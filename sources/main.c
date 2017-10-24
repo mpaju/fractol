@@ -3,7 +3,7 @@
 static void	check_args(t_env *e, int ac, char **av)
 {
 	if (ac != 2 || (!ft_strequ(av[1], "1") && \
-		!ft_strequ(av[1], "2") /*&& !ft_strequ(av[1], "3")*/))
+		!ft_strequ(av[1], "2") && !ft_strequ(av[1], "3")))
 	{
 		ft_putendl_fd("Usage: ./fractol [fractol number]", 2);
 		ft_putendl_fd("1 - Julia", 2);
@@ -27,12 +27,16 @@ static void	init_picture(t_env *e)
 	e->posx = 0;
 	e->posy = 0;
 	create_color_table(e);
+	e->pause = 1;
 	if (ft_strequ(e->fractal_num, "1"))
+	{
 		e->fractol = julia;
+		e->pause = 0;
+	}
 	else if (ft_strequ(e->fractal_num, "2"))
 		e->fractol = mandelbrot;
-	// else if (ft_strequ(e->fractal_num, "3"))
-	// 	e->fractol = 
+	else if (ft_strequ(e->fractal_num, "3"))
+		e->fractol = burningship;
 }
 
 int			main(int ac, char **av)
