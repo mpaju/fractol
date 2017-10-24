@@ -6,7 +6,7 @@
 /*   By: mpaju <mpaju@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/16 18:49:59 by mpaju             #+#    #+#             */
-/*   Updated: 2017/10/23 21:29:45 by mpaju            ###   ########.fr       */
+/*   Updated: 2017/10/24 09:40:19 by mpaju            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct		s_env
 	int				bpp;
 	int				size_line;
 	int				endian;
+	char			*fractal_num;
 	int				(*fractol)(struct s_env*, float x, float y);
 	int				width;
 	int				height;

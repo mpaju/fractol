@@ -12,13 +12,8 @@ static void	check_args(t_env *e, int ac, char **av)
 		ft_putendl_fd("Examle: ./fractol 1", 2);
 		exit(1);
 	}
-	if (ft_strequ(av[1], "1"))
-		e->fractol = julia;
-	else if (ft_strequ(av[1], "2"))
-		e->fractol = mandelbrot;
-	// else if (ft_strequ(av[1], "3"))
-	// 	e->fractol = 
-}
+	e->fractal_num = av[1];
+	}
 
 static void	init_picture(t_env *e)
 {
@@ -32,6 +27,12 @@ static void	init_picture(t_env *e)
 	e->posx = 0;
 	e->posy = 0;
 	create_color_table(e);
+	if (ft_strequ(e->fractal_num, "1"))
+		e->fractol = julia;
+	else if (ft_strequ(e->fractal_num, "2"))
+		e->fractol = mandelbrot;
+	// else if (ft_strequ(e->fractal_num, "3"))
+	// 	e->fractol = 
 }
 
 int			main(int ac, char **av)
@@ -39,8 +40,8 @@ int			main(int ac, char **av)
 	t_env	*e;
 
 	e = (t_env *)ft_memalloc(sizeof(t_env));
-	init_picture(e);
 	check_args(e, ac, av);
+	init_picture(e);
 	draw_img(e);
 	catch_hooks(e);
 	mlx_loop(e->mlx);
