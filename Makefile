@@ -6,7 +6,7 @@
 #    By: mpaju <mpaju@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/17 17:18:15 by mpaju             #+#    #+#              #
-#    Updated: 2017/10/23 14:48:40 by mpaju            ###   ########.fr        #
+#    Updated: 2017/10/25 18:17:26 by mpaju            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,11 @@ NAME		=	fractol
 UNAME		=	Fractol
 
 CC			=	gcc
-FLAGS		=	# -Wall -Wextra -Werror
+FLAGS		=	-Wall -Wextra -Werror
 
 SRC_DIR		=	sources
 FILES		=	main.c \
-				fractol.c \
-				colors.c \
+				fractals.c \
 				hooks.c \
 				draw.c
 SRCS		=	$(addprefix $(SRC_DIR)/, $(FILES))
